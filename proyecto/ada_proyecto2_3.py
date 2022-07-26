@@ -1,6 +1,8 @@
 import readchar
 import replit
 
+#https://replit.com/@AnthonyO6/PersonalClassicPoints#main.py
+
 # Proyecto integrador 2
 
 # Instrucciones: Escribir un programa que corra un bucle infinito leyendo e 
