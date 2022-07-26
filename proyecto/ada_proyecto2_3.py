@@ -33,7 +33,6 @@ while True:
     if i == 51:
       break
     for k in range(-1+i,i):
-      #j.append(k)
       print(k)
       continue
     
