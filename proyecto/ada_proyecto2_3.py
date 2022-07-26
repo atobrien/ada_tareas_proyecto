@@ -1,9 +1,7 @@
 import readchar
 import replit
 
-#https://replit.com/@AnthonyO6/PersonalClassicPoints#main.py
-
-# Proyecto integrador 2
+# Proyecto integrador 2------------------------------------------
 
 # Instrucciones: Escribir un programa que corra un bucle infinito leyendo e 
 # imprimiento las teclas y sólo terminará cuando se presione la tecla ↑ 
@@ -20,7 +18,7 @@ import replit
 #     print(keypress)
 
 
-# Proyecto integrador 3
+# Proyecto integrador 3------------------------------------------
 
 # Iniciar con un número en 0, leer la tecla `n` del teclado en un bucle, por cada presionada, borrar la terminal y e imprimir el nuevo número hasta el número 50.
 
