@@ -129,19 +129,21 @@ def movements():
   matrixMap()
   while True:
     keypress = readchar.readkey()
-    if keypress == 'A' and matrixMap()[personLocation()[0]][personLocation()[1]+1] != '#':
-      matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-      matrixMap()[personLocation()[0]][personLocation()[1]+1] = 'P' 
-    elif keypress == 'W' and matrixMap()[personLocation()[0]+1][personLocation()[1]] != '#':
-      matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-      matrixMap()[personLocation()[0]+1][personLocation()[1]] = 'P'   
-    elif keypress == 'D' and matrixMap()[personLocation()[0]][personLocation()[1]-1] != '#':
-      matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-      matrixMap()[personLocation()[0]][personLocation()[1]-1] = 'P' 
-    elif keypress == 'S' and matrixMap()[personLocation()[0]-1][personLocation()[1]] != '#':
-      matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-      matrixMap()[personLocation()[0]-1][personLocation()[1]] = 'P'
-    return matrixMap()
+    for kp in keypress:
+      if keypress == 'A' and matrixMap()[personLocation()[0]][personLocation()[1]+1] != '#':
+        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
+        matrixMap()[personLocation()[0]][personLocation()[1]+1] = 'P' 
+      elif keypress == 'W' and matrixMap()[personLocation()[0]+1][personLocation()[1]] != '#':
+        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
+        matrixMap()[personLocation()[0]+1][personLocation()[1]] = 'P'   
+      elif keypress == 'D' and matrixMap()[personLocation()[0]][personLocation()[1]-1] != '#':
+        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
+        matrixMap()[personLocation()[0]][personLocation()[1]-1] = 'P' 
+      elif keypress == 'S' and matrixMap()[personLocation()[0]-1][personLocation()[1]] != '#':
+        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
+        matrixMap()[personLocation()[0]-1][personLocation()[1]] = 'P'
+        continue
+      return matrixMap()
       
       
   #   if keypress == 'n':
@@ -169,14 +171,14 @@ def matrixMapToStringMap():
   # # print(mat)
   # mat = createMatrix(21,21,alpha)      
   # print(matrixMap())
-  # for line in matrixMap():
-  #   mapst =  '  '.join(map(str, line))
-  #   # why when i use return it gives single line 
-  #   print (mapst)
+  for line in movements():
+    mapst =  '  '.join(map(str, line))
+    # why when i use return it gives single line 
+    print (mapst)
   
 def main():  
-  # matrixMapToStringMap()
-  movements()
+  matrixMapToStringMap()
+  #print(movements())
 
 if __name__ == "__main__":
     main()
