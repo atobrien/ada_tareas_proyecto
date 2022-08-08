@@ -40,11 +40,9 @@
     
 # Implementar una función que reciba el mapa de un laberinto en forma de cadena, y lo convierta a matriz de caracteres.
 
-
 import readchar
 import replit
   
-
 def createMap(path):
   """
   This saves the map as a string vector
@@ -85,21 +83,9 @@ def matrixMap():
   """
   alpha = createMap(path = "mydata.txt")
   mat = createMatrix(21,21,alpha) 
-  mat[0][0] = 'P'
-  mat[20][19] = '0'
+  # mat[0][0] = 'P'
+  # mat[20][19] = '0'
   return(mat)
-
-# def wallLocations():
-#   """
-#   This saves all the wall locations in a 
-#   matrix 
-#   """
-#   w_locations = []
-#   for n in range(len(matrixMap())):
-#     for i in range(len(matrixMap()[0])):
-#       if matrixMap()[n][i] == '#':
-#         w_locations.append([n,i])
-#   return(w_locations)
 
 def personLocation():
   """
@@ -126,51 +112,47 @@ def movements():
   This will replace current P location with . and move in
   one direction relative to the key press 
   """
-  matrixMap()
   while True:
     keypress = readchar.readkey()
+    mat2 = matrixMap()
     for kp in keypress:
-      if keypress == 'A' and matrixMap()[personLocation()[0]][personLocation()[1]+1] != '#':
-        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-        matrixMap()[personLocation()[0]][personLocation()[1]+1] = 'P' 
-      elif keypress == 'W' and matrixMap()[personLocation()[0]+1][personLocation()[1]] != '#':
-        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-        matrixMap()[personLocation()[0]+1][personLocation()[1]] = 'P'   
-      elif keypress == 'D' and matrixMap()[personLocation()[0]][personLocation()[1]-1] != '#':
-        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-        matrixMap()[personLocation()[0]][personLocation()[1]-1] = 'P' 
-      elif keypress == 'S' and matrixMap()[personLocation()[0]-1][personLocation()[1]] != '#':
+      if personLocation() == []:
+        mat2[0][0] = 'P'      
+        return mat2
+        continue
+      elif kp == 'A' and mat2()[personLocation()[0]][personLocation()[1]+1] != '#':
+        replit.clear()
+        mat2()[personLocation()[0]][personLocation()[1]] = '.'
+        mat2()[personLocation()[0]][personLocation()[1]+1] = 'P' 
+        return mat2
+        continue
+      elif kp == 'W' and mat2()[personLocation()[0]+1][personLocation()[1]] != '#':
+        replit.clear()
+        mat2()[personLocation()[0]][personLocation()[1]] = '.'
+        mat2()[personLocation()[0]+1][personLocation()[1]] = 'P'   
+        return mat2
+        continue 
+      elif kp == 'D' and mat2()[personLocation()[0]][personLocation()[1]-1] != '#':
+        replit.clear()
+        mat2()[personLocation()[0]][personLocation()[1]] = '.'
+        mat2()[personLocation()[0]][personLocation()[1]-1] = 'P' 
+        return mat2
+        continue
+      elif kp == 'S' and matrixMap()[personLocation()[0]-1][personLocation()[1]] != '#':
+        replit.clear()
         matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
         matrixMap()[personLocation()[0]-1][personLocation()[1]] = 'P'
-        continue
-      return matrixMap()
-      
-      
-  #   if keypress == 'n':
-  #     mat[0][0] = 'P'
-  #     mat[20][19] = '0'
-  #     return(mat)
-  #   else:
-  #     for n in range(len(mat)):
-  #       for i in range(len(mat[0])):
-  #         if mat[n][i] == 'P':
-  #           p_location = tuple([n,i])
-  #           return p_location
-      # keypress == readchar.key.LEFT:   
-        # return(len(mat),len(mat[0]))
-        # print(mat[n][n])
+        return mat2
+        continue 
+      elif kp =='E':
+        break
+
   
 def matrixMapToStringMap():
   """
   This prints the map matrix to a string matrix
   for easy viewing
   """
-  # alpha = createMap(path = "mydata.txt")
-  # # mat = np.array(alpha).reshape(21,21)
-  # # mat[0,0] = 'P' 
-  # # print(mat)
-  # mat = createMatrix(21,21,alpha)      
-  # print(matrixMap())
   for line in movements():
     mapst =  '  '.join(map(str, line))
     # why when i use return it gives single line 
@@ -178,7 +160,6 @@ def matrixMapToStringMap():
   
 def main():  
   matrixMapToStringMap()
-  #print(movements())
 
 if __name__ == "__main__":
     main()
