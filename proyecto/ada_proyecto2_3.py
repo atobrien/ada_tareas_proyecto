@@ -45,7 +45,8 @@ import replit
   
 def createMap(path):
   """
-  This saves the map as a string vector
+  This saves the map as a string vector:
+  
   open file reader
   read file into content
   close file reader
@@ -99,13 +100,13 @@ def personLocation():
         p_location = list([n,i])
   return(p_location)
 
-def endLocation():
-  """
-  This saves the ending location
-  in a list 
-  """
-  end_location = [20,20]
-  return end_location
+# def endLocation():
+#   """
+#   This saves the ending location
+#   in a list 
+#   """
+#   end_location = [20,20]
+#   return end_location
 
 def movements():
   """
@@ -115,36 +116,43 @@ def movements():
   while True:
     keypress = readchar.readkey()
     mat2 = matrixMap()
+
+
+
+
+
+
+    
     for kp in keypress:
       if personLocation() == []:
         mat2[0][0] = 'P'      
         return mat2
-        continue
+        pass
       elif kp == 'A' and mat2()[personLocation()[0]][personLocation()[1]+1] != '#':
         replit.clear()
         mat2()[personLocation()[0]][personLocation()[1]] = '.'
         mat2()[personLocation()[0]][personLocation()[1]+1] = 'P' 
         return mat2
-        continue
+        pass
       elif kp == 'W' and mat2()[personLocation()[0]+1][personLocation()[1]] != '#':
         replit.clear()
         mat2()[personLocation()[0]][personLocation()[1]] = '.'
         mat2()[personLocation()[0]+1][personLocation()[1]] = 'P'   
         return mat2
-        continue 
+        pass 
       elif kp == 'D' and mat2()[personLocation()[0]][personLocation()[1]-1] != '#':
         replit.clear()
         mat2()[personLocation()[0]][personLocation()[1]] = '.'
         mat2()[personLocation()[0]][personLocation()[1]-1] = 'P' 
         return mat2
-        continue
+        pass
       elif kp == 'S' and matrixMap()[personLocation()[0]-1][personLocation()[1]] != '#':
         replit.clear()
         matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
         matrixMap()[personLocation()[0]-1][personLocation()[1]] = 'P'
         return mat2
-        continue 
-      elif kp =='E':
+        pass 
+      elif kp == 'E':
         break
 
   
