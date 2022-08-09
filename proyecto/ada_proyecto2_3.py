@@ -110,46 +110,52 @@ def personLocation():
 
 def movements():
   """
-  This will replace current P location with . and move in
+  This will:
+  Save matrix map to mat 2 
+  Then save the location of ther person into p_location
+  Then update P location into matrix first at (0,0)
+  and then with "." and then with 'P' in
   one direction relative to the key press 
   """
   while True:
     keypress = readchar.readkey()
     mat2 = matrixMap()
 
+    p_location = []
+    for n in range(len(mat2)):
+      for i in range(len(mat2[0])):
+        if mat2[n][i] == 'P':
+          p_location = list([n,i])
+        pass
+        
 
-
-
-
-
-    
     for kp in keypress:
-      if personLocation() == []:
+      if p_location == []:
         mat2[0][0] = 'P'      
         return mat2
         pass
-      elif kp == 'A' and mat2()[personLocation()[0]][personLocation()[1]+1] != '#':
+      elif kp == 'A' and mat2[personLocation()[0]][personLocation()[1]+1] != '#':
         replit.clear()
-        mat2()[personLocation()[0]][personLocation()[1]] = '.'
-        mat2()[personLocation()[0]][personLocation()[1]+1] = 'P' 
+        mat2[personLocation()[0]][personLocation()[1]] = '.'
+        mat2[personLocation()[0]][personLocation()[1]+1] = 'P' 
         return mat2
         pass
-      elif kp == 'W' and mat2()[personLocation()[0]+1][personLocation()[1]] != '#':
+      elif kp == 'W' and mat2[personLocation()[0]+1][personLocation()[1]] != '#':
         replit.clear()
-        mat2()[personLocation()[0]][personLocation()[1]] = '.'
-        mat2()[personLocation()[0]+1][personLocation()[1]] = 'P'   
+        mat2[personLocation()[0]][personLocation()[1]] = '.'
+        mat2[personLocation()[0]+1][personLocation()[1]] = 'P'   
         return mat2
         pass 
       elif kp == 'D' and mat2()[personLocation()[0]][personLocation()[1]-1] != '#':
         replit.clear()
-        mat2()[personLocation()[0]][personLocation()[1]] = '.'
-        mat2()[personLocation()[0]][personLocation()[1]-1] = 'P' 
+        mat2[personLocation()[0]][personLocation()[1]] = '.'
+        mat2[personLocation()[0]][personLocation()[1]-1] = 'P' 
         return mat2
         pass
       elif kp == 'S' and matrixMap()[personLocation()[0]-1][personLocation()[1]] != '#':
         replit.clear()
-        matrixMap()[personLocation()[0]][personLocation()[1]] = '.'
-        matrixMap()[personLocation()[0]-1][personLocation()[1]] = 'P'
+        matrixMap[personLocation()[0]][personLocation()[1]] = '.'
+        matrixMap[personLocation()[0]-1][personLocation()[1]] = 'P'
         return mat2
         pass 
       elif kp == 'E':
@@ -164,10 +170,12 @@ def matrixMapToStringMap():
   for line in movements():
     mapst =  '  '.join(map(str, line))
     # why when i use return it gives single line 
-    print (mapst)
+    print(mapst)
   
 def main():  
-  matrixMapToStringMap()
+  while True:
+    matrixMapToStringMap()
+  
 
 if __name__ == "__main__":
     main()
