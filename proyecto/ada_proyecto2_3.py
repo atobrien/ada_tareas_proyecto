@@ -119,53 +119,51 @@ def movements():
   and then with "." and then with 'P' in
   one direction relative to the key press 
   """
-  #while True:
-    # keypress = readchar.readkey()
   mat2 = matrixMap()
 
   p_location = []
-  # This is storing the location of P
   for n in range(len(mat2)):
     for i in range(len(mat2[0])):
       if mat2[n][i] == 'P':
-        p_location = list([n,i])
-  print(p_location)
-    # if p_location == []:
-    #     mat2[0][0] = 'P'
-    #     print(p_location)        
-            
+        p_location = list([n,i])  
+        pass
 
-    # for kp in keypress:
-    #   if kp == 'A' and mat2[p_location[0]][p_location[1]+1] != '#':
-    #     replit.clear()
-    #     mat2[p_location[0]][p_location[1]] = '.'
-    #     mat2[p_location[0]][p_location[1]+1] = 'P' 
-    #     return mat2
-    #     pass
-    #   elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
-    #     replit.clear()
-    #     mat2[p_location[0]][p_location[1]] = '.'
-    #     mat2[p_location[0]+1][p_location[1]] = 'P'   
-    #     return mat2
-    #     pass 
-    #   elif kp == 'D' and mat2[p_location[0]][p_location[1]-1] != '#':
-    #     replit.clear()
-    #     mat2[p_location[0]][p_location[1]] = '.'
-    #     mat2[p_location[0]][p_location[1]-1] = 'P' 
-    #     return mat2
-    #     pass
-    #   elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
-    #     replit.clear()
-    #     mat2[p_location[0]][p_location[1]] = '.'
-    #     mat2[p_location[0]-1][p_location[1]] = 'P'
-    #     return mat2
-    #     pass 
-    #   elif kp == 'E':
-    #     break
-
+  while True:
+    keypress = readchar.readkey()
     
+    for kp in keypress:
+      if p_location == []:
+        replit.clear()
+        mat2[0][0] = 'P'      
+        return mat2
+        continue 
+      elif kp == 'A' and mat2[p_location[0]][p_location[1]+1] != '#':
+        replit.clear()
+        mat2[p_location[0]][p_location[1]] = '.'
+        mat2[p_location[0]][p_location[1]+1] = 'P' 
+        return mat2
+        pass
+      elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
+        replit.clear()
+        mat2[p_location[0]][p_location[1]] = '.'
+        mat2[p_location[0]+1][p_location[1]] = 'P'   
+        return mat2
+        pass 
+      elif kp == 'D' and mat2[p_location[0]][p_location[1]-1] != '#':
+        replit.clear()
+        mat2[p_location[0]][p_location[1]] = '.'
+        mat2[p_location[0]][p_location[1]-1] = 'P' 
+        return mat2
+        pass
+      elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
+        replit.clear()
+        mat2[p_location[0]][p_location[1]] = '.'
+        mat2[p_location[0]-1][p_location[1]] = 'P'
+        return mat2
+        pass 
+      elif kp == 'E':
+        break
 
-  
 def matrixMapToStringMap():
   """
   This prints the map matrix to a string matrix
@@ -177,9 +175,9 @@ def matrixMapToStringMap():
     print(mapst)
   
 def main():  
-  movements()
-  # while True:
-  #   matrixMapToStringMap()
+  # matrixMapToStringMap()
+  while True:
+    matrixMapToStringMap()
   
 
 if __name__ == "__main__":
