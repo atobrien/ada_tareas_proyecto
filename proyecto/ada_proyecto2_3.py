@@ -132,9 +132,9 @@ def movements():
     elif kp == 'D' and mat2[p_location[0]][p_location[1]+1] == '#':
       replit.clear()
       pass
-    elif kp == 'S' and mat2[p_location[0]+1][p_location[1]] == '#':
+    elif kp == 'S' and (mat2[p_location[0]+1][p_location[1]] == '#' or len(p_location) == 0):
       replit.clear()
-      pass
+      continue
     elif kp == 'A' and mat2[p_location[0]][p_location[1]-1] == '#':
       replit.clear()
       pass
@@ -142,10 +142,13 @@ def movements():
       replit.clear()
       pass
 
+
     for line in mat2:
       mapst =  '  '.join(map(str, line))
       # why when i use return it gives single line 
-      print(mapst)      
+      print(mapst)     
+
+      # print(p_location)
         
  
         
