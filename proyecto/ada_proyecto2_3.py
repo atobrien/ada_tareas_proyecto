@@ -105,6 +105,7 @@ def movements():
 
   while True:
     kp = readchar.readkey()
+    
 
     if kp == 'D' and mat2[p_location[0]][p_location[1]+1] != '#':
       replit.clear()
@@ -161,7 +162,12 @@ def matrixMapToStringMap(matrix):
 def main():  
   mat3 = matrixMap()
   mat3[0][0] = 'P'
-  matrixMapToStringMap(matrix=mat3)
+  # matrixMapToStringMap(matrix=mat3)
+
+  for line in mat3:
+    mapst =  '  '.join(map(str, line))
+    print(mapst)
+    
   movements()
   # while True:
   #   print( movements())
