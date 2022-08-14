@@ -54,9 +54,11 @@ def createMap(path):
   remove the new line characrters '\n'
   remove the white spaces left behind 
   """
-  f = open(path)
-  contents = f.read()
-  f.close()
+  with open(path, 'r') as file:
+    contents = file.read()  
+  # f = open(path)
+  # contents = f.read()
+  # f.close()
   # https://www.pythonpool.com/python-remove-newline-from-list/ (used to remove \n)
 # https://stackoverflow.com/questions/3845423/remove-empty-strings-from-a-list-of-strings (used to remove white spaces)
   res = [x for x in list(map(lambda x:x.strip(),list(contents))) if x]
@@ -84,31 +86,8 @@ def matrixMap():
   """
   alpha = createMap(path = "mydata.txt")
   mat = createMatrix(21,21,alpha) 
-  # mat[0][0] = 'P'
-  # mat[20][19] = '0'
   return(mat)
 
-def personLocation():
-  """
-  This saves the current person location
-  in a list 
-  """
-  p_location = []
-  for n in range(len(matrixMap())):
-    for i in range(len(matrixMap()[0])):
-      if mat2()[n][i] == 'P':
-        p_location = list([n,i])
-        for p in range(1):
-          p_location[p]
-  return(p_location)
-
-# def endLocation():
-#   """
-#   This saves the ending location
-#   in a list 
-#   """
-#   end_location = [20,20]
-#   return end_location
 
 def movements():
   """
@@ -119,65 +98,83 @@ def movements():
   and then with "." and then with 'P' in
   one direction relative to the key press 
   """
-  mat2 = matrixMap()
-
+  # Pregunta/Ejemplo 1:
   p_location = []
-  for n in range(len(mat2)):
-    for i in range(len(mat2[0])):
-      if mat2[n][i] == 'P':
-        p_location = list([n,i])  
-        pass
+  mat2 = matrixMap()
+  # for n in range(len(mat2)):
+  #   for i in range(len(mat2[0])):
+  #     if mat2[n][i] == 'P':
+  #       p_location = list([n,i])
+  #     else:
+  #       # Pregunta Rafa:
+  #       # Xq no esta imprimiendo la actualizacion de mat2? pero si la de p_location? 
+  #       mat2[0][0] = 'P'
+  #       p_location = list([0,0])
+  #       return(mat2)
+        
+ # Pregunt/Ejemplo 2:      
+  # while True:
+  #   keypress = readchar.readkey()
 
-  while True:
-    keypress = readchar.readkey()
+  #   ###############################
+  #   # Same problem
+  #   p_location = []
+  #   mat2 = matrixMap()
+  #   for n in range(len(mat2)):
+  #     for i in range(len(mat2[0])):
+  #       if mat2[n][i] == 'P':
+  #         p_location = list([n,i])
+  #   ##############################         
     
-    for kp in keypress:
-      if p_location == []:
-        replit.clear()
-        mat2[0][0] = 'P'      
-        return mat2
-        continue 
-      elif kp == 'A' and mat2[p_location[0]][p_location[1]+1] != '#':
-        replit.clear()
-        mat2[p_location[0]][p_location[1]] = '.'
-        mat2[p_location[0]][p_location[1]+1] = 'P' 
-        return mat2
-        pass
-      elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
-        replit.clear()
-        mat2[p_location[0]][p_location[1]] = '.'
-        mat2[p_location[0]+1][p_location[1]] = 'P'   
-        return mat2
-        pass 
-      elif kp == 'D' and mat2[p_location[0]][p_location[1]-1] != '#':
-        replit.clear()
-        mat2[p_location[0]][p_location[1]] = '.'
-        mat2[p_location[0]][p_location[1]-1] = 'P' 
-        return mat2
-        pass
-      elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
-        replit.clear()
-        mat2[p_location[0]][p_location[1]] = '.'
-        mat2[p_location[0]-1][p_location[1]] = 'P'
-        return mat2
-        pass 
-      elif kp == 'E':
-        break
+  #   for kp in keypress:
+  #     if p_location == []:
+  #       replit.clear()
+  #       mat2[0][0] = 'P'   
+  #       # Xq si puedo correr este parte del codigo pero no la parte de abajo, osea los elifs? Xq no esta guardando el cambio en mat2 y xq no esta quedando la actualizacion en p_location arriba? 
+  #       return mat2
+  #       continue 
+  #     elif kp == 'A' and mat2[p_location[0]][p_location[1]+1] != '#':
+  #       replit.clear()
+  #       mat2[p_location[0]][p_location[1]] = '.'
+  #       mat2[p_location[0]][p_location[1]+1] = 'P' 
+  #       return mat2
+  #       pass
+  #     elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
+  #       replit.clear()
+  #       mat2[p_location[0]][p_location[1]] = '.'
+  #       mat2[p_location[0]+1][p_location[1]] = 'P'   
+  #       return mat2
+  #       pass 
+  #     elif kp == 'D' and mat2[p_location[0]][p_location[1]-1] != '#':
+  #       replit.clear()
+  #       mat2[p_location[0]][p_location[1]] = '.'
+  #       mat2[p_location[0]][p_location[1]-1] = 'P' 
+  #       return mat2
+  #       pass
+  #     elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
+  #       replit.clear()
+  #       mat2[p_location[0]][p_location[1]] = '.'
+  #       mat2[p_location[0]-1][p_location[1]] = 'P'
+  #       return mat2
+  #       pass 
+  #     elif kp == 'E':
+  #       break
 
 def matrixMapToStringMap():
   """
   This prints the map matrix to a string matrix
   for easy viewing
   """
-  for line in movements():
-    mapst =  '  '.join(map(str, line))
-    # why when i use return it gives single line 
-    print(mapst)
+  # for line in movements():
+  #   mapst =  '  '.join(map(str, line))
+  #   # why when i use return it gives single line 
+  #   print(mapst)
   
 def main():  
+  print(movements())
   # matrixMapToStringMap()
-  while True:
-    matrixMapToStringMap()
+  # while True:
+  #   matrixMapToStringMap()
   
 
 if __name__ == "__main__":
