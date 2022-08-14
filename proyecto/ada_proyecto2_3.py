@@ -98,84 +98,66 @@ def movements():
   and then with "." and then with 'P' in
   one direction relative to the key press 
   """
-  # Pregunta/Ejemplo 1:
-  p_location = []
+  # Iniciar en P en (0,0)
+  p_location = list([0,0])
   mat2 = matrixMap()
-  # for n in range(len(mat2)):
-  #   for i in range(len(mat2[0])):
-  #     if mat2[n][i] == 'P':
-  #       p_location = list([n,i])
-  #     else:
-  #       # Pregunta Rafa:
-  #       # Xq no esta imprimiendo la actualizacion de mat2? pero si la de p_location? 
-  #       mat2[0][0] = 'P'
-  #       p_location = list([0,0])
-  #       return(mat2)
+  mat2[0][0] = 'P'
+
+  while True:
+    kp = readchar.readkey()
+
+    if kp == 'D' and mat2[p_location[0]][p_location[1]+1] != '#':
+      replit.clear()
+      mat2[p_location[0]][p_location[1]] = '.'
+      mat2[p_location[0]][p_location[1]+1] = 'P' 
+      p_location[1] += 1  
+      return mat2
+    elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
+      replit.clear()
+      mat2[p_location[0]][p_location[1]] = '.'
+      mat2[p_location[0]+1][p_location[1]] = 'P'   
+      p_location[0] += 1  
+      return p_location 
+    elif kp == 'A' and mat2[p_location[0]][p_location[1]-1] != '#':
+      replit.clear()
+      mat2[p_location[0]][p_location[1]] = '.'
+      mat2[p_location[0]][p_location[1]-1] = 'P' 
+      p_location[1] -= 1  
+      return p_location
+    elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
+      replit.clear()
+      mat2[p_location[0]][p_location[1]] = '.'
+      mat2[p_location[0]-1][p_location[1]] = 'P'
+      p_location[0] -= 1  
+      return p_location 
+    elif kp == 'E':
+      break
         
- # Pregunt/Ejemplo 2:      
-  # while True:
-  #   keypress = readchar.readkey()
-
-  #   ###############################
-  #   # Same problem
-  #   p_location = []
-  #   mat2 = matrixMap()
-  #   for n in range(len(mat2)):
-  #     for i in range(len(mat2[0])):
-  #       if mat2[n][i] == 'P':
-  #         p_location = list([n,i])
-  #   ##############################         
-    
-  #   for kp in keypress:
-  #     if p_location == []:
-  #       replit.clear()
-  #       mat2[0][0] = 'P'   
-  #       # Xq si puedo correr este parte del codigo pero no la parte de abajo, osea los elifs? Xq no esta guardando el cambio en mat2 y xq no esta quedando la actualizacion en p_location arriba? 
-  #       return mat2
-  #       continue 
-  #     elif kp == 'A' and mat2[p_location[0]][p_location[1]+1] != '#':
-  #       replit.clear()
-  #       mat2[p_location[0]][p_location[1]] = '.'
-  #       mat2[p_location[0]][p_location[1]+1] = 'P' 
-  #       return mat2
-  #       pass
-  #     elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
-  #       replit.clear()
-  #       mat2[p_location[0]][p_location[1]] = '.'
-  #       mat2[p_location[0]+1][p_location[1]] = 'P'   
-  #       return mat2
-  #       pass 
-  #     elif kp == 'D' and mat2[p_location[0]][p_location[1]-1] != '#':
-  #       replit.clear()
-  #       mat2[p_location[0]][p_location[1]] = '.'
-  #       mat2[p_location[0]][p_location[1]-1] = 'P' 
-  #       return mat2
-  #       pass
-  #     elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
-  #       replit.clear()
-  #       mat2[p_location[0]][p_location[1]] = '.'
-  #       mat2[p_location[0]-1][p_location[1]] = 'P'
-  #       return mat2
-  #       pass 
-  #     elif kp == 'E':
-  #       break
-
-def matrixMapToStringMap():
+ 
+        
+def matrixMapToStringMap(matrix):
   """
   This prints the map matrix to a string matrix
   for easy viewing
   """
-  # for line in movements():
-  #   mapst =  '  '.join(map(str, line))
-  #   # why when i use return it gives single line 
-  #   print(mapst)
+  for line in matrix:
+    mapst =  '  '.join(map(str, line))
+    # why when i use return it gives single line 
+    print(mapst)
+
+
+
+    
   
 def main():  
-  print(movements())
-  # matrixMapToStringMap()
+  mat3 = matrixMap()
+  mat3[0][0] = 'P'
+  matrixMapToStringMap(matrix=mat3)
   # while True:
-  #   matrixMapToStringMap()
-  
+  #   print( movements())
+  # matrixMapToStringMap()
+  while True:
+    matrixMapToStringMap(matrix=movements())
 
 if __name__ == "__main__":
     main()
