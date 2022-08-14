@@ -112,27 +112,31 @@ def movements():
       mat2[p_location[0]][p_location[1]+1] = 'P' 
       p_location[1] += 1  
       return mat2
+      continue
     elif kp == 'W' and mat2[p_location[0]+1][p_location[1]] != '#':
       replit.clear()
       mat2[p_location[0]][p_location[1]] = '.'
       mat2[p_location[0]+1][p_location[1]] = 'P'   
       p_location[0] += 1  
       return p_location 
+      continue
     elif kp == 'A' and mat2[p_location[0]][p_location[1]-1] != '#':
       replit.clear()
       mat2[p_location[0]][p_location[1]] = '.'
       mat2[p_location[0]][p_location[1]-1] = 'P' 
       p_location[1] -= 1  
       return p_location
+      continue
     elif kp == 'S' and mat2[p_location[0]-1][p_location[1]] != '#':
       replit.clear()
       mat2[p_location[0]][p_location[1]] = '.'
       mat2[p_location[0]-1][p_location[1]] = 'P'
       p_location[0] -= 1  
       return p_location 
-    elif kp == 'E':
-      break
-        
+      continue
+    elif kp == 'Q':
+      return kp
+      
  
         
 def matrixMapToStringMap(matrix):
@@ -140,15 +144,14 @@ def matrixMapToStringMap(matrix):
   This prints the map matrix to a string matrix
   for easy viewing
   """
-  for line in matrix:
-    mapst =  '  '.join(map(str, line))
-    # why when i use return it gives single line 
-    print(mapst)
+  if matrix == 'Q':
+    return 'You quit'
+  else:
+    for line in matrix:
+      mapst =  '  '.join(map(str, line))
+      # why when i use return it gives single line 
+      print(mapst)
 
-
-
-    
-  
 def main():  
   mat3 = matrixMap()
   mat3[0][0] = 'P'
