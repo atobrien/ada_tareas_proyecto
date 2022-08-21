@@ -142,7 +142,7 @@ def movements():
     elif kp == 'W' and mat2[p_location[0]-1][p_location[1]] == '#':
       replit.clear()
       pass
-    # testing index error boundries not solved as yet
+    # testing index error boundries not solved as yet no pude resolverlo hasta el moment en replits
     # elif p_location in [1,0]:
     #   #global test
     #   test = 'D'
