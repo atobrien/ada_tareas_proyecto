@@ -42,7 +42,8 @@
 
 import readchar
 import replit
-  
+import random
+
 def createMap(path):
   """
   This saves the map as a string vector:
@@ -84,7 +85,7 @@ def matrixMap():
   From here we can update the matrix before 
   printing it
   """
-  alpha = createMap(path = "mydata.txt")
+  alpha = createMap(path = "mydata" + str(random.randint(1,4)) + ".txt")
   mat = createMatrix(21,21,alpha) 
   return(mat)
 
@@ -102,11 +103,11 @@ def movements():
   p_location = list([0,0])
   mat2 = matrixMap()
   mat2[0][0] = 'P'
+  # test = None
 
   while True:
     kp = readchar.readkey()
     
-
     if kp == 'D' and mat2[p_location[0]][p_location[1]+1] != '#':
       replit.clear()
       mat2[p_location[0]][p_location[1]] = '.'
@@ -132,51 +133,37 @@ def movements():
     elif kp == 'D' and mat2[p_location[0]][p_location[1]+1] == '#':
       replit.clear()
       pass
-    elif kp == 'S' and (mat2[p_location[0]+1][p_location[1]] == '#' or len(p_location) == 0):
+    elif kp == 'S' and mat2[p_location[0]+1][p_location[1]] == '#':
       replit.clear()
-      continue
+      pass
     elif kp == 'A' and mat2[p_location[0]][p_location[1]-1] == '#':
       replit.clear()
       pass
     elif kp == 'W' and mat2[p_location[0]-1][p_location[1]] == '#':
       replit.clear()
       pass
-
+    # testing index error boundries not solved as yet
+    # elif p_location in [1,0]:
+    #   #global test
+    #   test = 'D'
+    #   #continue
 
     for line in mat2:
-      mapst =  '  '.join(map(str, line))
-      # why when i use return it gives single line 
-      print(mapst)     
-
+      mapst =  '  '.join(map(str, line)) 
+      print(mapst)   
       # print(p_location)
-        
- 
-        
-def matrixMapToStringMap(matrix):
-  """
-  This prints the map matrix to a string matrix
-  for easy viewing
-  """
-  for line in matrix:
-    mapst =  '  '.join(map(str, line))
-    # why when i use return it gives single line 
-    print(mapst)
+      # print(test)
 
-def main():  
+def main(): 
+  # print map once 
   mat3 = matrixMap()
   mat3[0][0] = 'P'
-  # matrixMapToStringMap(matrix=mat3)
-
   for line in mat3:
     mapst =  '  '.join(map(str, line))
     print(mapst)
     
+  # print movement on map
   movements()
-  # while True:
-  #   print( movements())
-  # # matrixMapToStringMap()
-  # while True:
-  #   matrixMapToStringMap(matrix=movements())
 
 if __name__ == "__main__":
     main()
