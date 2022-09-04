@@ -171,32 +171,191 @@
 #     main()
 
 
-# Proyecto integrador 5------------------------------------------
+# # Proyecto integrador 5------------------------------------------
 
 
-# Implementa la clase Juego, ahora el mapa y las posiciones inicial y final son atributos de esta clase, reescribe todas tus funciones anteriores de forma que sean métodos de la clase y todo esté encapsulado.
+# # Implementa la clase Juego, ahora el mapa y las posiciones inicial y final son atributos de esta clase, reescribe todas tus funciones anteriores de forma que sean métodos de la clase y todo esté encapsulado.
+
+# import readchar
+# import replit
+# import random
+# from dataclasses import dataclass, field
+
+# @dataclass
+# class Juego:
+#   p_location: list = field(default_factory=lambda: [0,0])
+#   rowCount: int = 21
+#   colCount: int = 21
+  
+#   def path():
+#     path = "mydata" + str(random.randint(1,4)) + ".txt"
+#     return path
+    
+#   with open(path(), 'r') as file:
+#     contents = file.read()   
+#   res = [x for x in list(map(lambda x:x.strip(),list(contents))) if x]
+
+#   def createMatrix(self):   
+#       mat = []
+#       for i in range(self.rowCount):
+#           rowList = []
+#           for j in range(self.colCount):
+#               if self.res[j] not in mat:         
+#                 rowList.append(self.res[self.rowCount * i + j])
+#           mat.append(rowList)
+#       return mat
+  
+#   def movements(self):
+#     mat2 = self.createMatrix()
+#     mat2[0][0] = 'P'
+
+#     while True:
+#       kp = readchar.readkey()
+
+#       if self.p_location[0]+1 == 21:
+#         continue
+
+#       if self.p_location[1]+1 == 21:
+#         continue
+
+#       if self.p_location[1]-1 == -2:
+#         continue
+
+#       if self.p_location[0]-1 == -2:
+#         continue     
+      
+#       if kp == 'D' and mat2[self.p_location[0]][self.p_location[1]+1] != '#':
+#         replit.clear()
+#         mat2[self.p_location[0]][self.p_location[1]] = '.'
+#         mat2[self.p_location[0]][self.p_location[1]+1] = 'P' 
+#         self.p_location[1] += 1  
+#       elif kp == 'S' and mat2[self.p_location[0]+1][self.p_location[1]] != '#':
+#         replit.clear()
+#         mat2[self.p_location[0]][self.p_location[1]] = '.'
+#         mat2[self.p_location[0]+1][self.p_location[1]] = 'P'   
+#         self.p_location[0] += 1  
+#       elif kp == 'A' and mat2[self.p_location[0]][self.p_location[1]-1] != '#':
+#         replit.clear()
+#         mat2[self.p_location[0]][self.p_location[1]] = '.'
+#         mat2[self.p_location[0]][self.p_location[1]-1] = 'P' 
+#         self.p_location[1] -= 1  
+#       elif kp == 'W' and mat2[self.p_location[0]-1][self.p_location[1]] != '#':
+#         replit.clear()
+#         mat2[self.p_location[0]][self.p_location[1]] = '.'
+#         mat2[self.p_location[0]-1][self.p_location[1]] = 'P'
+#         self.p_location[0] -= 1  
+#       elif kp == 'Q':
+#         return kp
+#       elif kp == 'D' and mat2[self.p_location[0]][self.p_location[1]+1] == '#':
+#         replit.clear()
+#         pass
+#       elif kp == 'S' and mat2[self.p_location[0]+1][self.p_location[1]] == '#':
+#         replit.clear()
+#         pass
+#       elif kp == 'A' and mat2[self.p_location[0]][self.p_location[1]-1] == '#':
+#         replit.clear()
+#         pass
+#       elif kp == 'W' and mat2[self.p_location[0]-1][self.p_location[1]] == '#':
+#         replit.clear()
+#         pass
+  
+#       for line in mat2:
+#         mapst =  '  '.join(map(str, line)) 
+#         print(mapst)   
+
+#   def main(self): 
+#     mat3 = self.createMatrix()
+#     mat3[0][0] = 'P'
+    
+#     for line in mat3:
+#       mapst =  '  '.join(map(str, line))
+#       print(mapst)
+
+#     self.movements()
+  
+# if __name__ == "__main__":
+#   juego = Juego()
+#   print(juego.main())
+
+
+## Parte 2
+
+# En lugar de almacenar el mapa en el mismo código, podemos guardarlo en archivos con sus posiciones de inicio y fin y las dimensiones del mapa en la primera línea del archivo, de esta manera los componentes de la aplicación estarán separados y podremos mejorar la experiencia del juego.
+
+
+
+
 
 import readchar
 import replit
 import random
 from dataclasses import dataclass, field
 
-
-
-# ahorita como esta la clase funciona pero no es un juego
-# seria instanciar diferentes instancias de la misma clase
-# problema con el path 
-# path is an attribute de la clase no de la instancia 
-# hacer mi propio init para casa dinstancia 
-
-
-
 @dataclass
-class Juego:
+class Juego():
   p_location: list = field(default_factory=lambda: [0,0])
   rowCount: int = 21
   colCount: int = 21
   
+  def movements(self, matrix):
+
+    while True:
+      kp = readchar.readkey()
+
+      if self.p_location[0]+1 == 21:
+        continue
+
+      if self.p_location[1]+1 == 21:
+        continue
+
+      if self.p_location[1]-1 == -2:
+        continue
+
+      if self.p_location[0]-1 == -2:
+        continue     
+      
+      if kp == 'D' and matrix[self.p_location[0]][self.p_location[1]+1] != '#':
+        replit.clear()
+        matrix[self.p_location[0]][self.p_location[1]] = '.'
+        matrix[self.p_location[0]][self.p_location[1]+1] = 'P' 
+        self.p_location[1] += 1  
+      elif kp == 'S' and matrix[self.p_location[0]+1][self.p_location[1]] != '#':
+        replit.clear()
+        matrix[self.p_location[0]][self.p_location[1]] = '.'
+        matrix[self.p_location[0]+1][self.p_location[1]] = 'P'   
+        self.p_location[0] += 1  
+      elif kp == 'A' and matrix[self.p_location[0]][self.p_location[1]-1] != '#':
+        replit.clear()
+        matrix[self.p_location[0]][self.p_location[1]] = '.'
+        matrix[self.p_location[0]][self.p_location[1]-1] = 'P' 
+        self.p_location[1] -= 1  
+      elif kp == 'W' and matrix[self.p_location[0]-1][self.p_location[1]] != '#':
+        replit.clear()
+        matrix[self.p_location[0]][self.p_location[1]] = '.'
+        matrix[self.p_location[0]-1][self.p_location[1]] = 'P'
+        self.p_location[0] -= 1  
+      elif kp == 'Q':
+        return kp
+      elif kp == 'D' and matrix[self.p_location[0]][self.p_location[1]+1] == '#':
+        replit.clear()
+        pass
+      elif kp == 'S' and matrix[self.p_location[0]+1][self.p_location[1]] == '#':
+        replit.clear()
+        pass
+      elif kp == 'A' and matrix[self.p_location[0]][self.p_location[1]-1] == '#':
+        replit.clear()
+        pass
+      elif kp == 'W' and matrix[self.p_location[0]-1][self.p_location[1]] == '#':
+        replit.clear()
+        pass
+
+      for line in matrix:
+        mapst =  '  '.join(map(str, line)) 
+        print(mapst)          
+
+@dataclass
+class Archivo(Juego):
+
   def path():
     path = "mydata" + str(random.randint(1,4)) + ".txt"
     return path
@@ -214,52 +373,6 @@ class Juego:
                 rowList.append(self.res[self.rowCount * i + j])
           mat.append(rowList)
       return mat
-  
-  def movements(self):
-    mat2 = self.createMatrix()
-    mat2[0][0] = 'P'
-
-    while True:
-      kp = readchar.readkey()
-      
-      if kp == 'D' and mat2[self.p_location[0]][self.p_location[1]+1] != '#':
-        replit.clear()
-        mat2[self.p_location[0]][self.p_location[1]] = '.'
-        mat2[self.p_location[0]][self.p_location[1]+1] = 'P' 
-        self.p_location[1] += 1  
-      elif kp == 'S' and mat2[self.p_location[0]+1][self.p_location[1]] != '#':
-        replit.clear()
-        mat2[self.p_location[0]][self.p_location[1]] = '.'
-        mat2[self.p_location[0]+1][self.p_location[1]] = 'P'   
-        self.p_location[0] += 1  
-      elif kp == 'A' and mat2[self.p_location[0]][self.p_location[1]-1] != '#':
-        replit.clear()
-        mat2[self.p_location[0]][self.p_location[1]] = '.'
-        mat2[self.p_location[0]][self.p_location[1]-1] = 'P' 
-        self.p_location[1] -= 1  
-      elif kp == 'W' and mat2[self.p_location[0]-1][self.p_location[1]] != '#':
-        replit.clear()
-        mat2[self.p_location[0]][self.p_location[1]] = '.'
-        mat2[self.p_location[0]-1][self.p_location[1]] = 'P'
-        self.p_location[0] -= 1  
-      elif kp == 'Q':
-        return kp
-      elif kp == 'D' and mat2[self.p_location[0]][self.p_location[1]+1] == '#':
-        replit.clear()
-        pass
-      elif kp == 'S' and mat2[self.p_location[0]+1][self.p_location[1]] == '#':
-        replit.clear()
-        pass
-      elif kp == 'A' and mat2[self.p_location[0]][self.p_location[1]-1] == '#':
-        replit.clear()
-        pass
-      elif kp == 'W' and mat2[self.p_location[0]-1][self.p_location[1]] == '#':
-        replit.clear()
-        pass
-  
-      for line in mat2:
-        mapst =  '  '.join(map(str, line)) 
-        print(mapst)   
 
   def main(self): 
     mat3 = self.createMatrix()
@@ -269,8 +382,11 @@ class Juego:
       mapst =  '  '.join(map(str, line))
       print(mapst)
 
-    self.movements()
-  
+    mat2 = self.createMatrix()
+    mat2[0][0] = 'P'
+
+    Juego.movements(self,matrix=mat2)
+
 if __name__ == "__main__":
-  juego = Juego()
-  print(juego.main())
+  juego = Archivo()
+  juego.main()   
